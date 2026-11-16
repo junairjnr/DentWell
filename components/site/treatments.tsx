@@ -1,0 +1,93 @@
+import Image from "next/image";
+import Link from "next/link";
+import type { Treatment } from "@/lib/types";
+import { DriftFrame, Reveal } from "./motion";
+
+export function Treatments({ treatments }: { treatments: Treatment[] }) {
+  const [lead, ...rest] = treatments;
+  if (!lead) return null;
+  return (
+    <section className="bg-wall" id="treatments">
+      <div className="mx-auto max-w-page px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
+        <Reveal className="max-w-2xl">
+          <h2 className="display-title">Root canal, and the care around it.</h2>
+          <p className="mt-4 text-[16px] leading-relaxed text-[#3f3832]">
+            Thirteen treatments are listed. Each one starts with an examination. Learn more, or book
+            that treatment and the clinic will confirm the time.
+          </p>
+        </Reveal>
+
+        <Reveal
+          as="article"
+          y={32}
+          className="photo-frame mt-12 grid overflow-hidden rounded-[1.75rem] bg-slate text-wall sm:rounded-[2rem] lg:grid-cols-2"
+        >
+          <DriftFrame className="aspect-[4/3] sm:aspect-auto sm:min-h-[20rem] lg:min-h-[22rem]">
+            <Image
+              src={lead.image}
+              alt={lead.imageAlt}
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 40vw, 100vw"
+            />
+          </DriftFrame>
+          <div className="flex flex-col justify-center px-6 py-10 sm:px-10">
+            <h3 className="text-3xl font-medium tracking-[-0.03em] sm:text-[2rem]">{lead.name}</h3>
+            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-wall/85">{lead.summary}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href={`/treatments/${lead.slug}`}
+                className="btn-press inline-flex h-11 items-center justify-center rounded-full bg-gold px-5 text-sm font-medium text-ink hover:bg-[#d4b36a]"
+              >
+                Learn more
+              </Link>
+              <Link
+                href={`/book?treatment=${encodeURIComponent(lead.name)}`}
+                className="btn-press inline-flex h-11 items-center justify-center rounded-full border border-wall/30 px-5 text-sm hover:bg-wall/10"
+              >
+                Book treatment
+              </Link>
+            </div>
+          </div>
+        </Reveal>
+
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {rest.map((treatment, index) => (
+            <Reveal
+              key={treatment.slug}
+              as="article"
+              lift
+              delay={(index % 3) * 0.06}
+              className="group overflow-hidden rounded-[1.5rem] bg-paper shadow-lift"
+            >
+              <div className="relative h-48 overflow-hidden sm:h-44">
+                <Image
+                  src={treatment.image}
+                  alt={treatment.imageAlt}
+                  fill
+                  className="object-cover transition duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
+                  sizes="(min-width: 1024px) 25vw, 100vw"
+                />
+              </div>
+              <div className="p-5 sm:p-6">
+                <h3 className="text-lg font-medium tracking-[-0.02em]">{treatment.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#3f3832]">{treatment.summary}</p>
+                <div className="mt-4 flex flex-wrap gap-4 text-sm">
+                  <Link href={`/treatments/${treatment.slug}`} className="font-medium text-gold-deep">
+                    Learn more
+                  </Link>
+                  <Link
+                    href={`/book?treatment=${encodeURIComponent(treatment.name)}`}
+                    className="font-medium text-ink"
+                  >
+                    Book treatment
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

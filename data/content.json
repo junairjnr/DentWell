@@ -1,0 +1,229 @@
+{
+  "treatments": [
+    {
+      "slug": "root-canal",
+      "name": "Root Canal Treatment",
+      "summary": "Care to keep a damaged tooth, with the steps explained before treatment begins.",
+      "detail": "DENTWELL is a root canal centre. Patients on Google describe root canal visits here as carefully explained and comfortable. Suitability, the number of visits, and the restoration afterwards are decided after an examination. This page is not a promise of a painless or single-visit result.",
+      "image": "/clinic/operatory.jpg",
+      "imageAlt": "Treatment room at DENTWELL with the dental chair, operating light, and gold wall mark.",
+      "bookable": true
+    },
+    {
+      "slug": "single-sitting-root-canal",
+      "name": "Single-Sitting Root Canal",
+      "summary": "Some root canal cases can be completed in one visit, after the tooth is assessed.",
+      "detail": "A single sitting is offered only when the tooth and the diagnosis allow it. The dentist will say so at the consultation. It is not the default for every root canal.",
+      "image": "/clinic/operatory.jpg",
+      "imageAlt": "The DENTWELL operatory, where root canal treatment is planned.",
+      "bookable": true
+    },
+    {
+      "slug": "re-root-canal",
+      "name": "Re-Root Canal Treatment",
+      "summary": "A second treatment for a tooth that still needs attention after an earlier root canal.",
+      "detail": "Retreatment is considered when a previously treated tooth is symptomatic or shows signs that the first treatment has not settled. The dentist explains what is realistic for that tooth before anything is scheduled.",
+      "image": "/clinic/radiograph.jpg",
+      "imageAlt": "A dental radiograph published on the clinic's Google profile.",
+      "bookable": true
+    },
+    {
+      "slug": "crowns-and-bridges",
+      "name": "Dental Crowns and Bridges",
+      "summary": "Restorations that cover a weakened tooth or replace a missing one between neighbours.",
+      "detail": "Crowns and bridges are planned around the tooth that remains, the bite, and the material that suits the case. Shade and shape are discussed in the clinic, not chosen from a catalogue on this page.",
+      "image": "/clinic/logo-wall.jpg",
+      "imageAlt": "Gold DENTWELL tooth mark on the fluted wall of the clinic.",
+      "bookable": true
+    },
+    {
+      "slug": "dental-implants",
+      "name": "Dental Implants",
+      "summary": "A fixed way to replace a missing tooth, when the bone and health of the site allow it.",
+      "detail": "Implant treatment needs an examination and, usually, imaging. Healing time and the number of visits vary. The clinic will say whether an implant is appropriate before a date is fixed for surgery.",
+      "image": "/clinic/care.jpg",
+      "imageAlt": "A clinician with a patient in the DENTWELL treatment room.",
+      "bookable": true
+    },
+    {
+      "slug": "teeth-whitening",
+      "name": "Teeth Whitening",
+      "summary": "Professional whitening, supervised in the clinic, for stains that respond to it.",
+      "detail": "Whitening is not the same for every stain. Existing fillings and crowns do not change colour with the teeth. A consultation comes first so the expected change can be described honestly.",
+      "image": "/clinic/logo-desk.jpg",
+      "imageAlt": "Two people in front of the gold DENTWELL tooth, holding an aligner box at the desk.",
+      "bookable": true
+    },
+    {
+      "slug": "laser-dentistry",
+      "name": "Laser Dentistry",
+      "summary": "Laser used where it is the right instrument for soft-tissue care.",
+      "detail": "Laser is a tool, not a treatment by itself. The dentist will say whether it applies to the procedure you need. It is not offered as a substitute for every conventional treatment.",
+      "image": "/clinic/operatory.jpg",
+      "imageAlt": "Operating light and dental unit in the treatment room.",
+      "bookable": true
+    },
+    {
+      "slug": "clear-aligners",
+      "name": "Clear Aligners",
+      "summary": "A removable way to straighten teeth, for bites that aligners can move predictably.",
+      "detail": "Aligners are mentioned by patients in the clinic's Google reviews. They are planned from records of your teeth. Not every crowding or bite is an aligner case, and the dentist will say so.",
+      "image": "/clinic/waiting.jpg",
+      "imageAlt": "Waiting area with a pale oak desk, walnut table, and fluted wall.",
+      "bookable": true
+    },
+    {
+      "slug": "smile-design",
+      "name": "Smile Design",
+      "summary": "A plan for the look of a smile, built from the teeth, gums, and face you already have.",
+      "detail": "Smile design at DENTWELL starts with a conversation and an examination. Any preview is a plan, not a result. Treatment may combine several of the procedures listed here.",
+      "image": "/clinic/logo-desk.jpg",
+      "imageAlt": "The gold DENTWELL tooth on the fluted wall, with two people at the desk.",
+      "bookable": true
+    },
+    {
+      "slug": "cleaning-and-scaling",
+      "name": "Dental Cleaning and Scaling",
+      "summary": "A hygiene visit to remove deposits the brush does not reach.",
+      "detail": "Scaling is routine care for gums and teeth. How often you need it depends on what the dentist sees. Book a cleaning if it has been a while, or if your gums bleed when you brush.",
+      "image": "/clinic/shelves.jpg",
+      "imageAlt": "White display shelves at reception stocked with oral care products.",
+      "bookable": true
+    },
+    {
+      "slug": "dental-fillings",
+      "name": "Dental Fillings",
+      "summary": "Tooth-coloured repairs for cavities and small fractures.",
+      "detail": "A filling is planned for the size of the cavity. If the tooth needs more than a filling, the dentist will say that before the appointment ends.",
+      "image": "/clinic/operatory.jpg",
+      "imageAlt": "Dental chair and instrument unit at DENTWELL.",
+      "bookable": true
+    },
+    {
+      "slug": "surgical-extractions",
+      "name": "Surgical Tooth Extractions",
+      "summary": "Removal of teeth that cannot be taken out with a simple extraction.",
+      "detail": "Surgical removal is discussed beforehand, including what to expect afterwards. Wisdom teeth and broken roots are typical reasons. The decision follows an examination and, when needed, a radiograph.",
+      "image": "/clinic/care.jpg",
+      "imageAlt": "Clinical care underway in the treatment room.",
+      "bookable": true
+    },
+    {
+      "slug": "maxillofacial",
+      "name": "Maxillofacial Procedures",
+      "summary": "Oral and jaw procedures that need a specialist assessment.",
+      "detail": "The clinic lists maxillofacial procedures among its services. What can be done in this clinic, and what should be referred, is decided at consultation. This page does not describe surgical technique.",
+      "image": "/clinic/washroom.jpg",
+      "imageAlt": "Clinic wash area with wood cabinets, a vessel basin, and a glass partition.",
+      "bookable": true
+    }
+  ],
+  "doctors": [
+    {
+      "id": "shemina",
+      "name": "Dr. Shemina",
+      "role": "Clinician at DENTWELL",
+      "qualifications": "Degrees and years in practice have not been published by the clinic.",
+      "focus": "Patients on Google describe her manner as calm, and say she explains treatment before it starts.",
+      "bio": "The clinic carries Dr. Shemina's name. In public Google reviews, patients mention her by name during root canal care and describe the visit as comfortable because the procedure was explained. Formal qualifications will be added here when the clinic provides them. Nothing on this page is a credential.",
+      "visible": true
+    },
+    {
+      "id": "arshad",
+      "name": "Dr. Arshad Mohammed A",
+      "role": "Clinician at DENTWELL",
+      "qualifications": "Degrees and years in practice have not been published by the clinic.",
+      "focus": "Named in Google reviews by patients who came for root canal treatment.",
+      "bio": "Several Google reviews name Dr. Arshad Mohammed A, especially for root canal treatment. Patients describe his explanations as clear and his manner as kind. His qualifications are not on the public listing, so they are not shown here.",
+      "visible": true
+    }
+  ],
+  "gallery": [
+    {
+      "id": "logo-desk",
+      "src": "/clinic/logo-desk.jpg",
+      "alt": "Two people in front of the gold DENTWELL tooth, holding an aligner box at the desk.",
+      "caption": "At the logo wall",
+      "visible": true
+    },
+    {
+      "id": "operatory",
+      "src": "/clinic/operatory.jpg",
+      "alt": "Treatment room with dental chair, operating light, black chairs, and the gold DENTWELL mark.",
+      "caption": "Treatment room",
+      "visible": true
+    },
+    {
+      "id": "waiting",
+      "src": "/clinic/waiting.jpg",
+      "alt": "Waiting area with a pale oak desk, a walnut table on a grey rug, and a fluted wall.",
+      "caption": "Waiting area",
+      "visible": true
+    },
+    {
+      "id": "care",
+      "src": "/clinic/care.jpg",
+      "alt": "A clinician wearing a mask and gloves with a patient reclined in the dental chair.",
+      "caption": "In the chair",
+      "visible": true
+    },
+    {
+      "id": "logo",
+      "src": "/clinic/logo-wall.jpg",
+      "alt": "Gold tooth mark and the word DENTWELL mounted on a white fluted wall.",
+      "caption": "The wall mark",
+      "visible": true
+    },
+    {
+      "id": "shelves",
+      "src": "/clinic/shelves.jpg",
+      "alt": "White geometric shelves at reception holding oral care products.",
+      "caption": "Reception shelves",
+      "visible": true
+    },
+    {
+      "id": "team",
+      "src": "/clinic/team.jpg",
+      "alt": "The clinic team seated in reception around a floral floor design with a tooth at the centre.",
+      "caption": "The team",
+      "visible": true
+    },
+    {
+      "id": "washroom",
+      "src": "/clinic/washroom.jpg",
+      "alt": "Wash area with pale wood cabinets, a white basin, and warm light behind frosted glass.",
+      "caption": "Wash area",
+      "visible": true
+    },
+    {
+      "id": "radiograph",
+      "src": "/clinic/radiograph.jpg",
+      "alt": "Close dental radiograph of tooth roots, from the clinic's public photos.",
+      "caption": "Imaging",
+      "visible": true
+    }
+  ],
+  "reviews": [
+    {
+      "id": "shajahan",
+      "name": "Shajahan Ubaid",
+      "quote": "The doctors, the ambience and the staff are amazing.",
+      "source": "Shown on the clinic's Google review summary, 9 November 2026.",
+      "visible": true
+    },
+    {
+      "id": "shafeeq",
+      "name": "shafeeq shafeeq temmath",
+      "quote": "His behavior and approach were very kind and reassuring.",
+      "source": "Shown on the clinic's Google review summary, 9 November 2026. The longer review names Dr. Arshad Mohammed A and a root canal visit.",
+      "visible": true
+    },
+    {
+      "id": "sharena",
+      "name": "Sharena Share",
+      "quote": "Neat and clean Atmosphere and good team of Doctors and staffs.",
+      "source": "Shown on the clinic's Google review summary, 9 November 2026.",
+      "visible": true
+    }
+  ]
+}
