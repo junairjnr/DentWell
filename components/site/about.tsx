@@ -6,7 +6,7 @@ import { DriftFrame, Reveal } from "./motion";
 export function About() {
   return (
     <section className="bg-paper">
-      <div className="mx-auto grid max-w-page items-center gap-8 px-4 py-16 sm:gap-10 sm:px-6 sm:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:py-28">
+      {/* <div className="mx-auto grid max-w-page items-center gap-8 px-4 py-16 sm:gap-10 sm:px-6 sm:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:py-28">
         <DriftFrame className="photo-frame aspect-[4/3] rounded-[1.5rem] sm:aspect-auto sm:min-h-[28rem] sm:rounded-[2rem] lg:min-h-[34rem]">
           <Image
             src="/clinic/waiting.jpg"
@@ -36,7 +36,7 @@ export function About() {
             </p>
           </div>
         </Reveal>
-      </div>
+      </div> */}
 
       <div className="mx-auto grid max-w-page items-center gap-6 px-4 pb-16 sm:gap-8 sm:px-6 sm:pb-24 lg:grid-cols-[0.8fr_1.2fr] lg:pb-28">
         <Reveal>

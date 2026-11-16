@@ -18,7 +18,7 @@ export default async function HomePage() {
       <Header />
       <main>
         <Hero />
-        <Trust settings={settings} />
+        <Trust />
         <About />
         <Treatments treatments={content.treatments} />
         <Doctors doctors={content.doctors} />
