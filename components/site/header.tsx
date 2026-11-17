@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ScrollProgress } from "./motion";
+import { Magnetic, ScrollProgress } from "./motion";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { clinic, whatsappHref } from "@/lib/clinic";
 import { useUi } from "@/lib/store";
@@ -46,7 +46,7 @@ export function Header() {
       className={`fixed inset-x-0 top-0 z-50 transition duration-300 ${
         solid || menuOpen
           ? "bg-wall/95 shadow-header backdrop-blur-md"
-          : "bg-wall/90 backdrop-blur-md lg:bg-transparent lg:shadow-none lg:backdrop-blur-none"
+          : "bg-wall/80 backdrop-blur-md"
       }`}
     >
       <ScrollProgress />
@@ -54,18 +54,10 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2.5" onClick={() => setMenuOpen(false)}>
           <Mark />
           <span className="leading-none">
-            <span
-              className={`block text-[13px] font-semibold tracking-[0.18em] ${
-                solid || menuOpen ? "text-ink" : "text-ink lg:text-wall"
-              }`}
-            >
+            <span className="block text-[13px] font-semibold tracking-[0.18em] text-ink">
               DENTWELL
             </span>
-            <span
-              className={`mt-1 block text-[10px] tracking-wide ${
-                solid || menuOpen ? "text-[#5c534c]" : "text-[#5c534c] lg:text-wall/75"
-              }`}
-            >
+            <span className="mt-1 block text-[10px] tracking-wide text-[#5c534c]">
               Dr. Shemina
             </span>
           </span>
@@ -76,11 +68,8 @@ export function Header() {
             <Link
               key={href}
               href={href}
-              className={`text-sm transition ${
-                solid || menuOpen
-                  ? "text-[#3f3832] hover:text-ink"
-                  : "text-wall/85 hover:text-wall"
-              }`}
+              data-cursor="hover"
+              className="text-sm text-[#3f3832] transition hover:text-ink"
             >
               {label}
             </Link>
@@ -90,22 +79,22 @@ export function Header() {
         <div className="flex items-center gap-1 sm:gap-2">
           <a
             href={whatsappHref("Hello DENTWELL, I would like to ask about an appointment.")}
-            className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition ${
-              solid || menuOpen
-                ? "border border-ink/10 text-ink hover:bg-ink/5"
-                : "border border-ink/10 text-ink hover:bg-ink/5 lg:border-wall/30 lg:text-wall lg:hover:bg-wall/10"
-            }`}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 text-ink transition hover:bg-ink/5"
             aria-label="WhatsApp the clinic"
+            data-cursor="hover"
           >
             <MessageCircle className="h-4 w-4" />
           </a>
-          <Link
-            href="/book"
-            className="btn-press inline-flex h-10 items-center rounded-full bg-gold px-2.5 text-sm font-medium text-ink hover:bg-[#d4b36a] sm:px-4"
-          >
-            <span className="sm:hidden">Book</span>
-            <span className="hidden sm:inline">Book appointment</span>
-          </Link>
+          <Magnetic strength={0.2}>
+            <Link
+              href="/book"
+              data-cursor="hover"
+              className="btn-press inline-flex h-10 items-center rounded-full bg-gold px-2.5 text-sm font-medium text-ink shadow-glow hover:bg-[#d4b36a] sm:px-4"
+            >
+              <span className="sm:hidden">Book</span>
+              <span className="hidden sm:inline">Book appointment</span>
+            </Link>
+          </Magnetic>
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 lg:hidden"

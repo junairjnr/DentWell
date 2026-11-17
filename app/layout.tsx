@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Sora } from "next/font/google";
+import { Fraunces, Sora } from "next/font/google";
+import { CustomCursor } from "@/components/site/motion";
 import { clinic } from "@/lib/clinic";
 import "./globals.css";
 
 const sora = Sora({
   subsets: ["latin"],
   variable: "--font-sora",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -83,10 +90,11 @@ const contract = `THESIS: The visit is read under the operatory lamp: a full-ble
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={sora.variable}>
+    <html lang="en" className={`${sora.variable} ${fraunces.variable}`}>
       <body className="font-sans antialiased">
         <div hidden dangerouslySetInnerHTML={{ __html: `<!-- ${contract} -->` }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <CustomCursor />
         {children}
       </body>
     </html>

@@ -1,39 +1,62 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Pause, Play, X } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ArrowDown, Pause, Play } from "lucide-react";
+import { Magnetic, SplitWords } from "./motion";
 
-const DOCK_KEY = "dentwell_hero_dock_dismissed";
+const slides = [
+  { src: "/clinic/operatory.jpg", alt: "Treatment room at DENTWELL" },
+  { src: "/clinic/waiting.jpg", alt: "Waiting area at DENTWELL" },
+  { src: "/clinic/logo-desk.jpg", alt: "At the DENTWELL logo wall" },
+  { src: "/clinic/care.jpg", alt: "Care in the dental chair" },
+];
 
 export function Hero() {
   const reduce = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [paused, setPaused] = useState(false);
-  const [dockOpen, setDockOpen] = useState<boolean | null>(null);
+  const [index, setIndex] = useState(0);
+  const [mode, setMode] = useState<"video" | "stills">("video");
 
-  useEffect(() => {
-    try {
-      setDockOpen(localStorage.getItem(DOCK_KEY) !== "1");
-    } catch {
-      setDockOpen(true);
-    }
-  }, []);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const mediaY = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["0%", "18%"]);
+  const mediaScale = useTransform(scrollYProgress, [0, 1], reduce ? [1, 1] : [1.08, 1.2]);
+  const copyY = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["0%", "-12%"]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || mode !== "video") return;
     video.muted = true;
     if (reduce) {
       video.pause();
       setPaused(true);
       return;
     }
-    void video.play().then(() => setPaused(false)).catch(() => setPaused(true));
-  }, [reduce]);
+    void video.play().then(() => setPaused(false)).catch(() => {
+      setMode("stills");
+      setPaused(true);
+    });
+  }, [reduce, mode]);
+
+  useEffect(() => {
+    if (mode !== "stills" || reduce) return;
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % slides.length), 5200);
+    return () => window.clearInterval(id);
+  }, [mode, reduce]);
 
   function togglePlay() {
+    if (mode === "stills") {
+      setMode("video");
+      return;
+    }
     const video = videoRef.current;
     if (!video) return;
     if (video.paused) {
@@ -45,99 +68,144 @@ export function Hero() {
     }
   }
 
-  function dismissDock() {
-    setDockOpen(false);
-    try {
-      localStorage.setItem(DOCK_KEY, "1");
-    } catch {
-      /* ignore quota / private mode */
-    }
-  }
-
-  const showDock = dockOpen === true;
-
   return (
-    <section className="relative isolate min-h-[72svh] bg-slate sm:min-h-[78svh] lg:min-h-[100svh]">
-      <div className="absolute inset-0 overflow-hidden">
-        <video
-          ref={videoRef}
-          className="absolute left-0 top-0 h-full w-full origin-top-left scale-[1.34] object-cover"
-          src="/clinic/hero.mp4"
-          poster="/clinic/operatory.jpg"
-          muted
-          loop
-          playsInline
-          autoPlay={!reduce}
-          preload="auto"
-          aria-label="The DENTWELL reception and treatment room."
+    <section
+      ref={sectionRef}
+      className="relative isolate min-h-[100svh] overflow-hidden bg-charcoal text-wall"
+    >
+      <motion.div className="absolute inset-0" style={{ y: mediaY, scale: mediaScale }}>
+        {mode === "video" ? (
+          <video
+            ref={videoRef}
+            className="absolute left-0 top-0 h-full w-full origin-top-left scale-[1.28] object-cover"
+            src="/clinic/hero.mp4"
+            poster="/clinic/operatory.jpg"
+            muted
+            loop
+            playsInline
+            autoPlay={!reduce}
+            preload="auto"
+            aria-label="The DENTWELL clinic rooms."
+          />
+        ) : (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slides[index].src}
+              className="absolute inset-0"
+              initial={reduce ? false : { opacity: 0, scale: 1.08 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={reduce ? undefined : { opacity: 0, scale: 1.04 }}
+              transition={{ duration: reduce ? 0 : 1.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Image src={slides[index].src} alt={slides[index].alt} fill priority className="object-cover" sizes="100vw" />
+            </motion.div>
+          </AnimatePresence>
+        )}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-r from-charcoal/80 via-charcoal/35 to-charcoal/10"
         />
         <div
           aria-hidden
-          className={`pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-wall via-wall/80 to-transparent transition-opacity duration-500 lg:from-wall/95 lg:via-wall/55 ${
-            showDock ? "h-[42%] opacity-100" : "h-[18%] opacity-40"
-          }`}
+          className="absolute inset-0 bg-gradient-to-t from-charcoal/75 via-transparent to-charcoal/30"
         />
-      </div>
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-ivory via-ivory/35 to-transparent"
+        />
+      </motion.div>
 
-      <div className="absolute bottom-3 left-3 z-20 sm:bottom-5 sm:left-5 lg:bottom-8 lg:left-8">
+      <div className="absolute bottom-5 left-4 z-20 flex items-center gap-3 sm:bottom-8 sm:left-8">
         <button
           type="button"
           onClick={togglePlay}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-ink/70 text-wall backdrop-blur-sm transition hover:bg-ink/85"
-          aria-label={paused ? "Play the clinic film" : "Pause the clinic film"}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-ivory/90 text-ink shadow-lift backdrop-blur-sm transition hover:bg-gold"
+          aria-label={paused || mode === "stills" ? "Play the clinic film" : "Pause the clinic film"}
+          data-cursor="hover"
         >
-          {paused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
+          {paused || mode === "stills" ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
         </button>
-      </div>
-
-      {!showDock ? (
-        <h1 className="sr-only">Dr. Shemina&apos;s DENTWELL Super Speciality Dental Clinic &amp; Root Canal Centre</h1>
-      ) : null}
-
-      <div className="relative z-10 flex min-h-[72svh] items-end px-4 pb-6 pt-24 sm:min-h-[78svh] sm:px-6 sm:pb-8 lg:min-h-[100svh] lg:px-8 lg:pb-12">
-        <AnimatePresence>
-          {showDock ? (
-            <motion.div
-              key="hero-dock"
-              role="dialog"
-              aria-label="Clinic introduction"
-              className="lamp-ring relative w-full max-w-page rounded-[1.5rem] bg-wall/95 px-5 py-5 backdrop-blur-sm sm:rounded-[1.75rem] sm:px-8 sm:py-6 lg:ml-auto lg:max-w-lg lg:px-9 lg:py-8"
-              initial={reduce ? false : { opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduce ? undefined : { opacity: 0, y: 16, scale: 0.98 }}
-              transition={{ duration: reduce ? 0 : 0.45, ease: [0.16, 1, 0.3, 1] }}
-            >
+        {mode === "stills" ? (
+          <div className="flex gap-2 rounded-full bg-ivory/85 px-3 py-2 backdrop-blur-sm">
+            {slides.map((slide, i) => (
               <button
+                key={slide.src}
                 type="button"
-                onClick={dismissDock}
-                className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full text-ink/70 transition hover:bg-ink/5 hover:text-ink sm:right-4 sm:top-4"
-                aria-label="Close introduction"
-              >
-                <X className="h-4 w-4" />
-              </button>
-
-              <h1 className="pr-10 text-[13px] font-semibold tracking-[0.18em] text-ink">DENTWELL</h1>
-              <p className="mt-3 max-w-[34ch] text-[15px] leading-relaxed text-[#3f3832] sm:text-base">
-                Root canal centre and dental clinic on the first floor of OPS Tower, Thalakkadathur.
-              </p>
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="/book"
-                  className="inline-flex h-12 items-center justify-center rounded-full bg-gold px-5 text-sm font-medium text-ink transition hover:bg-[#d4b36a]"
-                >
-                  Book an appointment
-                </Link>
-                <Link
-                  href="/treatments"
-                  className="inline-flex h-12 items-center justify-center rounded-full border border-ink/15 px-5 text-sm font-medium text-ink transition hover:bg-ink/5"
-                >
-                  Explore treatments
-                </Link>
-              </div>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
+                aria-label={`Show ${slide.alt}`}
+                data-cursor="hover"
+                className={`h-1.5 rounded-full transition ${i === index ? "w-7 bg-gold" : "w-2.5 bg-ink/25"}`}
+                onClick={() => setIndex(i)}
+              />
+            ))}
+          </div>
+        ) : null}
       </div>
+
+      <motion.div
+        className="relative z-10 mx-auto flex min-h-[100svh] max-w-page flex-col justify-end px-4 pb-16 pt-28 sm:px-6 sm:pb-20 lg:justify-center lg:pb-24 lg:pt-28"
+        style={{ y: copyY, opacity: copyOpacity }}
+      >
+        <div className="max-w-3xl">
+          <p className="mb-5 text-[12px] font-semibold tracking-[0.22em] text-gold sm:text-[13px]">
+            DENTWELL · THALAKKADATHUR
+          </p>
+          <SplitWords
+            as="h1"
+            text="Exceptional care under the operatory light."
+            className="font-display text-[clamp(2.6rem,7vw,5.4rem)] font-medium leading-[0.98] tracking-[-0.04em] text-wall"
+          />
+          <motion.p
+            className="mt-6 max-w-[38ch] text-[15px] leading-relaxed text-wall/85 sm:text-base"
+            initial={reduce ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: reduce ? 0 : 0.55, duration: reduce ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Root canal centre and dental clinic — calm rooms, clear plans, and a time held only for
+            you.
+          </motion.p>
+          <motion.div
+            className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: reduce ? 0 : 0.7, duration: reduce ? 0 : 0.65, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Magnetic>
+              <Link
+                href="/book"
+                data-cursor="hover"
+                className="btn-press inline-flex h-12 items-center justify-center rounded-full bg-gold px-6 text-sm font-medium text-ink shadow-glow hover:bg-[#d4b36a]"
+              >
+                Book an appointment
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <Link
+                href="/treatments"
+                data-cursor="hover"
+                className="btn-press inline-flex h-12 items-center justify-center rounded-full border border-wall/35 bg-wall/10 px-6 text-sm font-medium text-wall backdrop-blur-sm hover:bg-wall/20"
+              >
+                Explore treatments
+              </Link>
+            </Magnetic>
+          </motion.div>
+        </div>
+
+        {!reduce ? (
+          <a
+            href="#visit"
+            className="motion-safe-only absolute bottom-6 right-4 inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.18em] text-wall/70 sm:bottom-10 sm:right-8"
+            data-cursor="hover"
+          >
+            SCROLL
+            <motion.span
+              animate={{ y: [0, 6, 0] }}
+              transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+            >
+              <ArrowDown className="h-3.5 w-3.5" />
+            </motion.span>
+          </a>
+        ) : null}
+      </motion.div>
     </section>
   );
 }

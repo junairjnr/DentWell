@@ -4,24 +4,31 @@
 
 :root {
   color-scheme: light;
+  --gold: #c6a66b;
+  --ivory: #f8f6f2;
+  --charcoal: #202a2b;
+  --sage: #dce8e3;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
 body {
-  background:
-    radial-gradient(120% 80% at 100% -10%, rgba(198, 176, 138, 0.28), transparent 55%),
-    radial-gradient(90% 60% at -10% 40%, rgba(196, 161, 90, 0.12), transparent 50%),
-    #f4f1ec;
+  background: #f8f6f2;
   color: #1a1816;
   font-feature-settings: "ss01" on;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 ::selection {
-  background: #c4a15a;
+  background: #c6a66b;
   color: #1a1816;
 }
 
@@ -34,36 +41,100 @@ body {
   html {
     scroll-behavior: auto;
   }
+
+  .motion-safe-only {
+    display: none !important;
+  }
 }
 
 .lamp-ring {
   box-shadow:
-    0 0 0 1px rgba(196, 161, 90, 0.9),
-    0 0 0 10px rgba(244, 241, 236, 0.22),
-    0 30px 60px -36px rgba(26, 24, 22, 0.65);
+    0 0 0 1px rgba(198, 166, 107, 0.9),
+    0 0 0 12px rgba(248, 246, 242, 0.28),
+    0 36px 70px -40px rgba(32, 42, 43, 0.55);
 }
 
 .photo-frame {
   box-shadow:
-    0 0 0 1px rgba(196, 161, 90, 0.35),
-    0 24px 48px -28px rgba(26, 24, 22, 0.45);
+    0 0 0 1px rgba(198, 166, 107, 0.32),
+    0 28px 56px -30px rgba(32, 42, 43, 0.48);
+}
+
+.glass-panel {
+  background: rgba(248, 246, 242, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(198, 166, 107, 0.28);
 }
 
 .btn-press {
   transition:
-    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
     background-color 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    box-shadow 0.25s ease;
 }
 
 .btn-press:active {
   transform: scale(0.98);
 }
 
+.magnetic-hit {
+  display: inline-flex;
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-sora), ui-serif, Georgia, serif;
+}
+
 .display-title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-family: var(--font-display), var(--font-sora), ui-serif, Georgia, serif;
+  font-size: clamp(2.25rem, 5.5vw, 4.25rem);
   font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.12;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
   text-wrap: balance;
+}
+
+.section-pad {
+  @apply px-4 py-16 sm:px-6 sm:py-24 lg:py-32;
+}
+
+.clip-reveal {
+  clip-path: inset(0 0 100% 0);
+}
+
+.horizon-track {
+  display: flex;
+  width: max-content;
+  gap: 1.25rem;
+}
+
+.custom-cursor {
+  pointer-events: none;
+  position: fixed;
+  z-index: 100;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 9999px;
+  background: #c6a66b;
+  mix-blend-mode: multiply;
+  transition:
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.2s ease,
+    width 0.2s ease,
+    height 0.2s ease,
+    margin 0.2s ease;
+}
+
+.custom-cursor.is-hover {
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  background: rgba(198, 166, 107, 0.35);
+}
+
+.scroll-progress {
+  transform-origin: left center;
 }
