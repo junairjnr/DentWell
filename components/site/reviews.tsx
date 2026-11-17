@@ -15,8 +15,8 @@ export function Reviews({ reviews }: { reviews: Review[] }) {
         aria-hidden
         className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gold/10 blur-3xl"
       />
-      <div className="relative mx-auto max-w-page px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
-        <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+      <div className="relative mx-auto max-w-page px-4 py-16 sm:px-6 sm:py-20 lg:py-28">
+        <Reveal className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end sm:gap-6">
           <h2 className="display-title max-w-xl">4.9 on Google, from 84 reviews.</h2>
           <a
             href={clinic.mapSearch}

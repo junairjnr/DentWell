@@ -9,7 +9,7 @@ export function Footer({ settings, treatments }: { settings: Settings; treatment
   const hours = hoursSummary(settings);
   return (
     <footer className="bg-ink text-wall">
-      <Reveal className="mx-auto grid max-w-page gap-10 px-4 py-16 sm:px-6 md:grid-cols-4">
+      <Reveal className="mx-auto grid max-w-page gap-8 px-4 py-14 sm:grid-cols-2 sm:gap-10 sm:px-6 sm:py-16 md:grid-cols-4">
         <div className="md:col-span-1">
           <div className="flex items-center gap-2">
             <Mark />

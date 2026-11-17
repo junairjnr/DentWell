@@ -23,17 +23,17 @@ export function Gallery({ items }: { items: GalleryItem[] }) {
 
   return (
     <section id="gallery" className="bg-paper">
-      <div className="mx-auto max-w-page px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
-        <Reveal>
+      <div className="mx-auto max-w-page px-4 py-16 sm:px-6 sm:py-20 lg:py-28">
+        <Reveal className="max-w-2xl">
           <h2 className="display-title">The clinic, as it is.</h2>
-          <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-[#3f3832]">
+          <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#3f3832] sm:mt-6">
             Photographs from the clinic&apos;s public Google gallery. A clinical software screen that
             showed a patient name was left out.
           </p>
         </Reveal>
-        <div className="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3">
+        <div className="mt-10 columns-1 gap-3 sm:mt-12 sm:columns-2 sm:gap-4 lg:columns-3">
           {visible.map((item, index) => (
-            <Reveal key={item.id} y={16} delay={(index % 3) * 0.05} className="mb-4 break-inside-avoid">
+            <Reveal key={item.id} y={16} delay={(index % 3) * 0.05} className="mb-3 break-inside-avoid sm:mb-4">
             <button
               type="button"
               onClick={() => setOpen(item)}

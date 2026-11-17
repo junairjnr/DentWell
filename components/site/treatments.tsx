@@ -8,7 +8,7 @@ export function Treatments({ treatments }: { treatments: Treatment[] }) {
   if (!lead) return null;
   return (
     <section className="bg-wall" id="treatments">
-      <div className="mx-auto max-w-page px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-page px-4 py-16 sm:px-6 sm:py-20 lg:py-28">
         <Reveal className="max-w-2xl">
           <h2 className="display-title">Root canal, and the care around it.</h2>
           <p className="mt-4 text-[16px] leading-relaxed text-[#3f3832]">

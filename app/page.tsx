@@ -2,7 +2,7 @@ import { About } from "@/components/site/about";
 import { ContactBand } from "@/components/site/contact-band";
 import { Doctors } from "@/components/site/doctors";
 import { Footer } from "@/components/site/footer";
-import { Gallery } from "@/components/site/gallery";
+// import { Gallery } from "@/components/site/gallery";
 import { Header } from "@/components/site/header";
 import { Hero } from "@/components/site/hero";
 import { Reviews } from "@/components/site/reviews";
@@ -23,7 +23,7 @@ export default async function HomePage() {
         <Treatments treatments={content.treatments} />
         <Doctors doctors={content.doctors} />
         <Reviews reviews={content.reviews} />
-        <Gallery items={content.gallery} />
+        {/* <Gallery items={content.gallery} /> */}
         <Why />
         <ContactBand settings={settings} />
       </main>

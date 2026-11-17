@@ -10,12 +10,12 @@ const points = [
     text: "Fluted walls, pale oak, and the gold mark are the actual clinic, not a stock interior.",
   },
   {
-    title: "Named by patients",
+    title: "Named in reviews",
     text: "Google reviews mention Dr. Shemina and Dr. Arshad Mohammed A, and a staff that explains the visit.",
   },
   {
-    title: "Easy to find",
-    text: "First floor, OPS Tower. Opposite Thalakkadathur Jumah Mosque. Above Federal Bank. Parking is listed on Google.",
+    title: "Clear next steps",
+    text: "Book online, message on WhatsApp, or call. Place details stay in the footer until you update this page.",
   },
   {
     title: "A time that is held",
@@ -30,11 +30,11 @@ const points = [
 export function Why() {
   return (
     <section className="bg-oak/35">
-      <div className="mx-auto max-w-page px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-page px-4 py-16 sm:px-6 sm:py-20 lg:py-28">
         <Reveal>
           <h2 className="display-title max-w-xl">Why people come upstairs.</h2>
         </Reveal>
-        <ul className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-10 grid gap-x-8 gap-y-8 sm:mt-12 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-3">
           {points.map((point, index) => (
             <Reveal as="li" key={point.title} delay={(index % 3) * 0.06}>
               <h3 className="text-lg font-medium tracking-[-0.02em] text-ink">{point.title}</h3>
